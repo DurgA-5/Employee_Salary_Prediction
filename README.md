@@ -52,10 +52,10 @@ During the internship, I developed a complete Streamlit-based app with the follo
 
 ## <span style="color:#111">📁 Dataset Info</span>
 
-* **Name:** Garment Worker Productivity Dataset
+* **Name:** EMPLOYEE_DATASET
 * **Source:** Kaggle
 * **Features Used:** Department, Education, KPI metrics, Number of Workers, Target productivity (used as proxy for salary)
-* **Rows:** 1197
+* **Rows:** 10000+..
 * **Preprocessing:** Outlier removal, encoding, feature scaling, date parsing
 
 ---
