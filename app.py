@@ -145,7 +145,7 @@ if st.session_state.current_page == "Home":
         <div class='main-title'>Employee Salary Prediction System</div>
         <div class='subtitle'>Smart AI-powered platform to predict salaries of employees in the Indian job market using advanced machine learning models.</div>
 
-        <img src="https://sdmntpreastus.oaiusercontent.com/files/00000000-1240-61f9-93c4-56e4083f82b8/raw?se=2025-07-18T13%3A33%3A36Z&sp=r&sv=2024-08-04&sr=b&scid=5a6cbf0b-6575-5207-affe-ef9254f6d74d&skoid=5cab1ff4-c20d-41dc-babb-df0c2cc21dd4&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-07-18T03%3A22%3A41Z&ske=2025-07-19T03%3A22%3A41Z&sks=b&skv=2024-08-04&sig=dv4Be408TJ/4xem04PStXyDjeedVDdLn2tMYDZNwWsY%3D"  width="50%" style="border-radius: 20px; margin-bottom: 30px; display: block; margin-left: auto; margin-right: auto;"/>
+        <img src="IMG.PNG"border-radius: 20px; margin-bottom: 30px; display: block; margin-left: auto; margin-right: auto;"/>
         <br/>
                     
         ### 🎯 Overview
