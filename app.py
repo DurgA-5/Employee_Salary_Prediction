@@ -145,7 +145,7 @@ if st.session_state.current_page == "Home":
         <div class='main-title'>Employee Salary Prediction System</div>
         <div class='subtitle'>Smart AI-powered platform to predict salaries of employees in the Indian job market using advanced machine learning models.</div>
 
-        <img src="IMG.PNG" border-radius: 20px; margin-bottom: 30px; display: block; margin-left: auto; margin-right: auto;"/>
+        <img src="https://github.com/DurgA-5/Employee_Salary_Prediction/blob/1b9eeab51f5d58c9345cf5f3251ebedffa6642ec/IMG.PNG" border-radius: 20px; margin-bottom: 30px; display: block; margin-left: auto; margin-right: auto;"/>
         <br/>
                     
         ### 🎯 Overview
