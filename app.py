@@ -145,7 +145,7 @@ if st.session_state.current_page == "Home":
         <div class='main-title'>Employee Salary Prediction System</div>
         <div class='subtitle'>Smart AI-powered platform to predict salaries of employees in the Indian job market using advanced machine learning models.</div>
         
-        <img src="IMG.png" style="border-radius: 20px; margin-bottom: 30px; display: block; margin-left: auto; margin-right: auto;" />
+        <img src="ChatGPT Image Jul 18, 2025, 09_57_59 PM.png" style="border-radius: 20px; margin-bottom: 30px; display: block; margin-left: auto; margin-right: auto;" />
         <BR>
                     
         ### 🎯 Overview
