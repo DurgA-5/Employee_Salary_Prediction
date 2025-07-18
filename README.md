@@ -2,7 +2,7 @@
 
 ## <span style="color:#111">🌟 Project Title</span>
 
-**AI-Powered Employee Salary Prediction System**
+** Employee Salary Prediction System**
 
 ## <span style="color:#111">🎓 Internship Details</span>
 
