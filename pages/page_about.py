@@ -107,9 +107,9 @@ def show():
         """)
         st.markdown("""
         **Connect with me:**
-        - 📧 **Email:** <a href="mailto:durga@email.com">durga@email.com</a>
-        - 🌐 **LinkedIn:** <a href="https://www.linkedin.com/in/durgaprasadpapugani" target="_blank">linkedin.com/in/durgaprasadpapugani</a>
-        - 🐱 **GitHub:** <a href="https://github.com/durgaprasadpapugani" target="_blank">github.com/durgaprasadpapugani</a>
+        - 📧 **Email:** <a href="mailto:papugandurgaprasad@email.com">papuganidurgaprasad@email.com</a>
+        - 🌐 **LinkedIn:** <a href="https://www.linkedin.com/in/durga-prasad-papugani-3a1391322" target="_blank">DURGA LINKEDIN</a>
+        - 🐱 **GitHub:** <a href="https://github.com/DurgA-5" target="_blank">DURGA GITHUB</a>
         """, unsafe_allow_html=True)
 
     st.markdown("---")
@@ -126,7 +126,7 @@ def show():
     # --- USEFUL LINKS ---
     st.header("🔗 Useful Links")
     st.markdown("""
-    - 📂 [Project GitHub Repository](https://github.com/durgaprasadpapugani/employee-salary-predictor)
+    - 📂 [Project GitHub Repository](https://github.com/DurgA-5/Employee_Salary_Prediction)
     - 📽️ [Presentation Slides (if available)](https://slides.com/)
     - 📄 [Technical Documentation (Markdown / PDF)](https://docs.google.com/)
     """)
