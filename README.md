@@ -1,150 +1,145 @@
-💼 Internship Project Report
+# 💼 **Internship Project Report**
 
-🌟 Project Title
+## <span style="color:#111">🌟 Project Title</span>
 
-AI-Powered Employee Salary Prediction System
+**AI-Powered Employee Salary Prediction System**
 
-🎓 Internship Details
+## <span style="color:#111">🎓 Internship Details</span>
 
-Program: IBM SkillsBuild Virtual Internship
+* **Internship Program:** IBM SkillsBuild Virtual Internship
+* **Supported by:** Edunet Foundation
+* **Platform:** IBM SkillsBuild
+* **Duration:** 6 Weeks (June 18, 2025 – July 30, 2025)
+* **Domain:** Artificial Intelligence & Machine Learning
+* **My Name:** Durga Prasad Papugani
 
-Partnered Organization: Edunet Foundation
+---
 
-Platform: IBM SkillsBuild
+## <span style="color:#111">✨ Objective of My Project</span>
 
-Duration: 6 Weeks (June 18, 2025 – July 30, 2025)
+The main goal of this project was to build a smart web application that could predict employee salaries based on different factors like experience, education, skills, and job role. I wanted to make it useful for HR professionals and companies to quickly analyze employee compensation using Machine Learning models and smart dashboards.
 
-Domain: Artificial Intelligence & Machine Learning
+---
 
+## <span style="color:#111">⚡ What I Built</span>
 
-🚀 Project Objective
+During the internship, I developed a complete Streamlit-based app with the following features:
 
-To design and deploy an intelligent web application that accurately predicts employee salaries in the Indian job market using advanced machine learning models. The solution aims to simplify HR analytics through data insights, salary forecasting, and resume-based input automation.
+* 🔍 Real-time employee salary prediction using multiple ML models
+* 📄 Resume upload feature that auto-fills prediction fields
+* 🧼 Complete preprocessing pipeline (cleaning, encoding, etc.)
+* 📊 Interactive data dashboards for exploring insights
+* 🔍 SHAP explainability for feature importance
+* 📉 Residual plots, error analysis, and prediction distributions
+* 📈 Model evaluation using R², RMSE, MAE, and CV
+* 🗓 Trend charts and time-based analysis if date data is present
+* 📊 Advanced statistical charts (Box, Violin, Outliers)
+* 🧪 T-tests, correlation heatmaps, and hypothesis testing
+* 📅 PDF report generation with predicted salary
 
-📊 Features Implemented
 
-✨ Real-Time Salary Prediction using ML models
+---
 
-🔹 Resume Parsing to Auto-fill Fields
+## <span style="color:#111">🤖 Machine Learning Models I Used</span>
 
-🔹 Data Cleaning & Preprocessing Pipeline
+* Linear Regression
+* Random Forest Regressor
+* XGBoost Regressor
+* GridSearchCV for model tuning
+* K-Fold Cross Validation for testing reliability
 
-🔹 Interactive Dashboards for EDA
+---
 
-🔹 SHAP-Based Feature Importance Visualization
+## <span style="color:#111">📁 Dataset Info</span>
 
-🔹 Residual and Prediction Distribution Plots
+* **Name:** Garment Worker Productivity Dataset
+* **Source:** Kaggle
+* **Features Used:** Department, Education, KPI metrics, Number of Workers, Target productivity (used as proxy for salary)
+* **Rows:** 1197
+* **Preprocessing:** Outlier removal, encoding, feature scaling, date parsing
 
-🔹 Model Evaluation (R², RMSE, MAE)
+---
 
-🔹 Cross Validation Support
+## <span style="color:#111">🗂️ Tools & Technologies I Worked With</span>
 
-🔹 PDF Report Generation for Salary Prediction
+* **Frontend:** Streamlit, CSS, HTML
+* **Backend/ML:** Python, Pandas, Scikit-learn, XGBoost, SHAP
+* **Visualization:** Matplotlib, Seaborn, Plotly
+* **PDF & Resume:** PyMuPDF, FPDF, Regex
 
-🔹 Upload Your Own Dataset & Retrain
+---
 
-🔹 Time-Series Trends (if date available)
+## <span style="color:#111">🎯 What I Achieved</span>
 
-🔹 Outlier Detection
+* End-to-end ML app from scratch (data to deployment)
+* Built custom resume parser to extract user details
+* Created PDF report generator with predictions
+* Designed clean UI with animations and theme
+* Model tuning and performance analytics
+* Deployed the project to Streamlit Cloud
 
-🔹 Statistical Tests and Violin/Boxplots
+---
 
-🔹 Download Visualizations as PNG
+## <span style="color:#111">🌍 Try the App Live</span>
 
-🔹 AI Chatbot for Dataset Insights (Beta)
+[Open in Streamlit](https://employeepredictor.streamlit.app/)
 
-🧱 ML Models Used
+---
 
-Linear Regression
+## <span style="color:#111">👨‍💼 My Role in the Internship</span>
 
-Random Forest Regressor
+* Planned and designed the entire app structure
+* Handled data cleaning and feature engineering
+* Built all the ML models and evaluation logic
+* Implemented resume parsing & PDF generation
+* Created interactive dashboards with custom plots
+* Managed styling, layout, and deployment
 
-XGBoost Regressor
+---
 
-GridSearchCV and Cross-Validation used for optimization
+## <span style="color:#111">📚 What I Learned</span>
 
-📄 Dataset Details
+* Gained full experience in building ML web apps
+* Improved understanding of real-world data workflows
+* Learned Streamlit and PDF generation tools
+* Practiced data visualization techniques
+* Explored resume parsing using NLP/Regex
+* Understood importance of UI/UX in ML apps
 
-Name: Employee Dataset
+---
 
-Source: Kaggle
+## <span style="color:#111">🏅 Internship Completion</span>
 
-Features: Department, Education, KPIs, No. of Workers, etc.
+* **Certificate:** IBM SkillsBuild via Edunet Foundation
+* **Verified Badge:** Issued through Credly
 
-Target: Actual Productivity (used as proxy for Salary)
+---
 
-🌐 Tech Stack
+## <span style="color:#111">🛠️ Project Source Code</span>
 
-Frontend: Streamlit, HTML, CSS
-
-Backend: Python, Scikit-Learn, Pandas, XGBoost, PyMuPDF, SHAP
-
-Visualization: Plotly, Seaborn, Matplotlib
-
-PDF Generation: FPDF, PyPDF2
-
-Others: Regex, Resume Parsing, File Upload Handling
-
-🧰 Achievements
-
-Successfully created a modular and reusable ML pipeline
-
-Integrated resume parsing to auto-fill form fields
-
-Generated professional PDF reports with predicted salary and summary
-
-Designed a user-friendly frontend with beautiful UI/UX
-
-Published the app live using Streamlit Cloud
-
-🌐 Live Demo
-
-https://employeepredictor.streamlit.app/
-
-👨‍💼 Role & Responsibilities
-
-Full-stack developer and ML engineer for the project
-
-Designed and built entire application UI and backend logic
-
-Collected and cleaned datasets, performed data preprocessing
-
-Trained and tuned ML models
-
-Wrote report generation and resume parsing logic
-
-Created dashboards and visualization logic using Plotly/Seaborn
-
-✨ Learnings
-
-Practical experience with Machine Learning lifecycle
-
-Exposure to real-time ML model deployment using Streamlit
-
-Improved skills in Data Visualization, PDF handling, File I/O
-
-Worked on parsing real documents using NLP and Regex
-
-Developed strong skills in team communication and project presentation
-
-📅 Completion Certificate & Badge
-
-Certificate Provider: IBM SkillsBuild via Edunet Foundation
-
-Badge Platform: Credly
-
-
-
-💼 Project Repository
-
+```bash
 git clone https://github.com/DurgaPrasadPapugani/employee-salary-app.git
+```
 
+---
 
-🙏 Special Thanks
+## <span style="color:#111">🔮 Future Improvements</span>
 
-To the Edunet Foundation and IBM SkillsBuild platform for this incredible learning opportunity that helped gain real-world ML deployment experience.
+* Use LLM (ChatGPT/Gemini) to analyze resume content
+* Forecast future salary trends using time series models
+* Support other domains beyond Indian job market
+* Add login system, database, and session handling
 
-WorkFLow Images
+---
+
+## <span style="color:#111">🙌 Special Thanks</span>
+
+Big thanks to **Edunet Foundation** and **IBM SkillsBuild** for giving me the opportunity to work on this amazing real-world AI project. It helped me grow technically and professionally.
+
+---
+
+<img src="https://sdmntpreastus.oaiusercontent.com/files/00000000-1240-61f9-93c4-56e4083f82b8/raw?se=2025-07-18T13%3A33%3A36Z&sp=r&sv=2024-08-04&sr=b&scid=5a6cbf0b-6575-5207-affe-ef9254f6d74d&skoid=5cab1ff4-c20d-41dc-babb-df0c2cc21dd4&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-07-18T03%3A22%3A41Z&ske=2025-07-19T03%3A22%3A41Z&sks=b&skv=2024-08-04&sig=dv4Be408TJ/4xem04PStXyDjeedVDdLn2tMYDZNwWsY%3D" width="50%" style="border-radius: 20px; margin-bottom: 30px; display: block; margin-left: auto; margin-right: auto;" />
+
 
 
 <img width="1906" height="891" alt="image" src="https://github.com/user-attachments/assets/ce4316fc-8f50-49de-af9d-f5737eb6739c" />
