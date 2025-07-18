@@ -173,10 +173,10 @@ if st.session_state.current_page == "Home":
         ### 📈 Model Performance
         | Metric            | Value              |
         |------------------|--------------------|
-        | 📊 R² Score        | **87.3%** (Random Forest) |
+        | 📊 R² Score        | **90.3%** (Random Forest) |
         | 📉 RMSE            | ₹1.2 Lakhs         |
         | 🧾 Dataset Size     | 10,000+ records    |
-        | 🧠 Features Used    | 20+ features       |
+        | 🧠 Features Used    | 25+ features       |
 
         ### 👤 About the Developer
         > **Durga Prasad Papugani**  
