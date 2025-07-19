@@ -6,11 +6,11 @@ import datetime
 import os
 
 def show():
-    # --------- Custom CSS ---------
+    # --------- Custom CSS (Background changed only) ---------
     st.markdown("""
         <style>
         .stApp {
-            background-color: #f3f4f6;
+            background: linear-gradient(to right, #e0f7fa, #ffffff);
             font-family: 'Segoe UI', sans-serif;
         }
         .title-header {
@@ -148,11 +148,9 @@ def show():
 
         st.markdown(f"<div class='stSuccess'>Predicted Salary: Rs. {int(prediction):,}</div>", unsafe_allow_html=True)
 
-        # Generate PDF
         def generate_pdf(salary, details):
             pdf = FPDF()
             pdf.add_page()
-
             pdf.set_font("Arial", 'B', 16)
             pdf.cell(0, 10, "Employee Salary Prediction Report", ln=True, align='C')
             pdf.ln(8)
@@ -194,4 +192,4 @@ def show():
 
 # Run app
 if __name__ == "__main__":
-    show() 
+    show()
