@@ -134,7 +134,7 @@ def show():
             "Age": age, "Gender": gender, "Education": education,
             "Experience": experience, "Department": department, "Title": title,
             "Performance": performance, "CityTier": city, "CompanySize": size,
-            "CompanyType": ctype, "TechSkill": tech, "Certificates": certs,
+            "CompanyType": ctype, "TechSkill": tech, "Certs": certs,
             "English": "Advanced"
         }
 
