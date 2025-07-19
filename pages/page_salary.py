@@ -130,16 +130,19 @@ def show():
         st.markdown("</div>", unsafe_allow_html=True)
 
     if submitted:
-        input_data = {
+        raw_data = {
             "Age": age, "Gender": gender, "Education": education,
             "Experience": experience, "Department": department, "Title": title,
             "Performance": performance, "CityTier": city, "CompanySize": size,
-            "CompanyType": ctype, "TechSkill": tech, "Certs": Certs,
+            "CompanyType": ctype, "TechSkill": tech, "Certs": certs,
             "English": "Advanced"
         }
 
         try:
-            df = pd.DataFrame([input_data])
+            # Ensure correct order of features
+            expected_cols = list(model.feature_names_in_)
+            df = pd.DataFrame([[raw_data[col] for col in expected_cols]], columns=expected_cols)
+
             prediction = model.predict(df)[0]
             st.session_state.prediction = prediction
         except Exception as e:
@@ -184,12 +187,12 @@ def show():
             return filepath
 
         try:
-            path = generate_pdf(prediction, input_data)
+            path = generate_pdf(prediction, raw_data)
             with open(path, "rb") as f:
                 st.download_button("📄 Download PDF Report", f.read(), file_name=os.path.basename(path), mime="application/pdf", use_container_width=True)
         except Exception as e:
             st.error(f"PDF generation error: {e}")
 
-# Run app
+# Run directly if needed
 if __name__ == "__main__":
     show()
