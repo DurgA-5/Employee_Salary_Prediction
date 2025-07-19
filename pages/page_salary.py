@@ -4,9 +4,14 @@ import joblib
 from fpdf import FPDF
 import datetime
 import os
+from PyPDF2 import PdfReader
 
 def show():
-    # ------------------- Page Styling -------------------
+    """
+    Renders the Salary Prediction page with advanced features.
+    This function encapsulates all the UI and logic for this specific page.
+    """
+    # ------------------- Page Styling and Header -------------------
     st.markdown("""
         <style>
         .stApp {
@@ -58,77 +63,75 @@ def show():
         </style>
     """, unsafe_allow_html=True)
 
-    st.markdown("<div class='title-header'>Salary Prediction Tool</div>", unsafe_allow_html=True)
+    st.markdown("<div class='title-header' style='color: #64ca0a;'>Salary Prediction Tool</div>", unsafe_allow_html=True)
 
-    # ------------------- Load ML Model -------------------
+    # ------------------- Model Loading -------------------
     @st.cache_resource
     def load_model():
         try:
-            return joblib.load("models/salary_model.pkl")
+            # This assumes your model is a pipeline that handles encoding/scaling
+            model_pipeline = joblib.load("models/salary_model.pkl")
+            return model_pipeline
+        except FileNotFoundError:
+            st.error("Model file not found. Please ensure 'salary_model.pkl' is in the 'models' directory.")
+            st.stop()
         except Exception as e:
-            st.error(f"❌ Error loading model: {e}")
+            st.error(f"An error occurred while loading the model: {e}")
             st.stop()
 
     model = load_model()
 
-    # ------------------- Form-based Input -------------------
-    with st.form("salary_form"):
+    # ------------------- Input Form -------------------
+    with st.container():
         st.markdown("<div class='input-section'>", unsafe_allow_html=True)
-        st.subheader("📝 Enter Employee Details")
+        st.subheader("👤 Enter Employee Information")
 
         col1, col2 = st.columns(2)
         with col1:
-            age = st.slider("Age", 20, 60, 30)
+            age = st.slider("Age", 22, 60, 30)
             gender = st.selectbox("Gender", ["Male", "Female"])
             education = st.selectbox("Education Level", ["High School", "Bachelors", "Masters", "PhD"])
             experience = st.slider("Years of Experience", 0.0, 40.0, 5.0, 0.5)
             department = st.selectbox("Department", ["Tech", "HR", "Finance", "Marketing", "Operations", "Support"])
-        with col2:
             title = st.selectbox("Job Title", ["Engineer", "Manager", "Analyst", "Lead", "Executive"])
+        with col2:
             performance = st.slider("Performance Rating (1-5)", 1, 5, 4)
             city = st.selectbox("City Tier", ["Tier 1", "Tier 2", "Tier 3"])
             size = st.selectbox("Company Size", ["Startup", "Mid", "Enterprise"])
             ctype = st.selectbox("Company Type", ["Private", "Public", "MNC"])
+            tech = st.slider("Technical Skills Score (0-100)", 0, 100, 75)
+            certs = st.slider("Number of Certifications", 0, 10, 1)
 
-        tech = st.slider("Technical Skills Score (0-100)", 0, 100, 75)
-        certs = st.slider("Number of Certifications", 0, 10, 1)
-
-        submitted = st.form_submit_button("💰 Predict Salary")
         st.markdown("</div>", unsafe_allow_html=True)
 
-    # ------------------- Prediction Logic -------------------
+    # Prepare input dataframe for prediction
+    input_data = {
+        "Age": age, "Gender": gender, "Education": education,
+        "Experience": experience, "Department": department, "Title": title,
+        "Performance": performance, "CityTier": city, "CompanySize": size,
+        "CompanyType": ctype, "TechSkill": tech, "Certs": certs,
+        # 'English' proficiency was in your original code, added here for completeness
+        "English": "Advanced" # Example: Assuming a default or another input for this
+    }
+    input_df = pd.DataFrame([input_data])
+
+    # ------------------- Prediction and Report Generation -------------------
     if 'prediction' not in st.session_state:
         st.session_state.prediction = None
 
-    if submitted:
-        input_data = {
-            "Age": age,
-            "Gender": gender,
-            "Education": education,
-            "Experience": experience,
-            "Department": department,
-            "Title": title,
-            "Performance": performance,
-            "CityTier": city,
-            "CompanySize": size,
-            "CompanyType": ctype,
-            "TechSkill": tech,
-            "Certs": certs,
-            "English": "Advanced"  # Hardcoded or can be added as dropdown
-        }
-
-        input_df = pd.DataFrame([input_data])
+    if st.button("💰 Predict Salary"):
         try:
-            st.session_state.prediction = model.predict(input_df)[0]
+            prediction_value = model.predict(input_df)[0]
+            st.session_state.prediction = prediction_value
         except Exception as e:
-            st.error(f"❌ Prediction failed: {e}")
+            st.error(f"Prediction failed. Please check input values. Error: {e}")
             st.session_state.prediction = None
 
-    # ------------------- Show Result & Generate Report -------------------
     if st.session_state.prediction is not None:
         st.markdown(f"<div class='stSuccess'>Predicted Salary: ₹{int(st.session_state.prediction):,}</div>", unsafe_allow_html=True)
         st.markdown("---")
 
+        # PDF Report Generation Function
         def generate_pdf_report(salary, inputs):
             pdf = FPDF()
             pdf.add_page()
@@ -137,34 +140,53 @@ def show():
             pdf.ln(10)
 
             pdf.set_font("Arial", 'B', 14)
-            pdf.cell(0, 10, f"Predicted Salary: ₹{int(salary):,}", ln=True)
+            pdf.cell(0, 10, f"Predicted Salary: Rs. {int(salary):,}", ln=True, align='L')
             pdf.ln(5)
 
             pdf.set_font("Arial", 'B', 12)
-            pdf.cell(0, 10, "Employee Details:", ln=True)
+            pdf.cell(0, 10, "Input Parameters:", ln=True)
             pdf.set_font("Arial", '', 11)
+
             for key, value in inputs.items():
                 pdf.cell(0, 8, f"- {key}: {value}", ln=True)
 
+            timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+            filename = f"Salary_Report_{timestamp}.pdf"
             os.makedirs("downloads", exist_ok=True)
-            filename = f"Salary_Report_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
-            path = os.path.join("downloads", filename)
-            pdf.output(path)
-            return path
+            filepath = os.path.join("downloads", filename)
+            pdf.output(filepath)
+            return filepath
 
+        # Download Button
         try:
-            pdf_path = generate_pdf_report(st.session_state.prediction, input_data)
-            with open(pdf_path, "rb") as f:
+            report_path = generate_pdf_report(st.session_state.prediction, input_data)
+            with open(report_path, "rb") as pdf_file:
                 st.download_button(
-                    label="📄 Download PDF Report",
-                    data=f.read(),
-                    file_name=os.path.basename(pdf_path),
-                    mime="application/pdf",
+                    label="📄 Download Salary Report",
+                    data=pdf_file.read(),
+                    file_name=os.path.basename(report_path),
+                    mime="application/octet-stream",
                     use_container_width=True
                 )
         except Exception as e:
-            st.error(f"❌ Could not generate PDF: {e}")
+            st.error(f"Failed to generate report: {e}")
 
-# Run standalone
+    # ------------------- Optional Resume Parser -------------------
+    st.markdown("---")
+    with st.expander("📄 Upload Resume to Parse (Optional)"):
+        uploaded_file = st.file_uploader("Upload your resume in PDF format", type="pdf", key="resume_uploader")
+        if uploaded_file:
+            try:
+                reader = PdfReader(uploaded_file)
+                text = ""
+                for page in reader.pages:
+                    page_text = page.extract_text()
+                    if page_text:
+                        text += page_text + "\n"
+                st.text_area("📑 Extracted Resume Text", text, height=250, help="This is the raw text extracted from your PDF.")
+            except Exception as e:
+                st.error(f"⚠️ Could not read the PDF file. It might be corrupted or image-based. Error: {e}")
+
+# To run this file directly for testing:
 if __name__ == "__main__":
-    show()
+    show() can you chnage the method of taking input
