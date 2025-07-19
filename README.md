@@ -144,5 +144,5 @@ Big thanks to **Edunet Foundation** and **IBM SkillsBuild** for giving me the op
 
 <img width="1906" height="891" alt="image" src="https://github.com/user-attachments/assets/ce4316fc-8f50-49de-af9d-f5737eb6739c" />
 
-<img width="1907" height="663" alt="image" src="https://github.com/user-attachments/assets/87d320c1-346e-4682-a42e-7dbee03d30c3" />
+
 
