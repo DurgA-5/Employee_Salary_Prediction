@@ -11,7 +11,7 @@ def show():
     Renders the Salary Prediction page with advanced features.
     This function encapsulates all the UI and logic for this specific page.
     """
-    # ------------------- Page Styling and Header -------------------
+    # ------------------- Page Styling -------------------
     st.markdown("""
         <style>
         .stApp {
@@ -63,26 +63,25 @@ def show():
         </style>
     """, unsafe_allow_html=True)
 
-    st.markdown("<div class='title-header' style='color: #64ca0a;'>Salary Prediction Tool</div>", unsafe_allow_html=True)
+    st.markdown("<div class='title-header'>Salary Prediction Tool</div>", unsafe_allow_html=True)
 
-    # ------------------- Model Loading -------------------
+    # ------------------- Load ML Model -------------------
     @st.cache_resource
     def load_model():
         try:
-            # This assumes your model is a pipeline that handles encoding/scaling
-            model_pipeline = joblib.load("models/salary_model.pkl")
+            model_pipeline = joblib.load("models/salary_model.pkl")  # Your trained pipeline
             return model_pipeline
         except FileNotFoundError:
-            st.error("Model file not found. Please ensure 'salary_model.pkl' is in the 'models' directory.")
+            st.error("Model file not found. Please ensure 'salary_model.pkl' is in the 'models' folder.")
             st.stop()
         except Exception as e:
-            st.error(f"An error occurred while loading the model: {e}")
+            st.error(f"Error loading model: {e}")
             st.stop()
 
     model = load_model()
 
     # ------------------- Input Form -------------------
-    with st.container():
+    with st.form("salary_form"):
         st.markdown("<div class='input-section'>", unsafe_allow_html=True)
         st.subheader("👤 Enter Employee Information")
 
@@ -102,24 +101,23 @@ def show():
             tech = st.slider("Technical Skills Score (0-100)", 0, 100, 75)
             certs = st.slider("Number of Certifications", 0, 10, 1)
 
+        submitted = st.form_submit_button("💰 Predict Salary")
         st.markdown("</div>", unsafe_allow_html=True)
 
-    # Prepare input dataframe for prediction
-    input_data = {
-        "Age": age, "Gender": gender, "Education": education,
-        "Experience": experience, "Department": department, "Title": title,
-        "Performance": performance, "CityTier": city, "CompanySize": size,
-        "CompanyType": ctype, "TechSkill": tech, "Certs": certs,
-        # 'English' proficiency was in your original code, added here for completeness
-        "English": "Advanced" # Example: Assuming a default or another input for this
-    }
-    input_df = pd.DataFrame([input_data])
-
-    # ------------------- Prediction and Report Generation -------------------
+    # ------------------- Prediction Logic -------------------
     if 'prediction' not in st.session_state:
         st.session_state.prediction = None
 
-    if st.button("💰 Predict Salary"):
+    if submitted:
+        input_data = {
+            "Age": age, "Gender": gender, "Education": education,
+            "Experience": experience, "Department": department, "Title": title,
+            "Performance": performance, "CityTier": city, "CompanySize": size,
+            "CompanyType": ctype, "TechSkill": tech, "Certs": certs,
+            "English": "Advanced"  # Default value (can be changed later)
+        }
+
+        input_df = pd.DataFrame([input_data])
         try:
             prediction_value = model.predict(input_df)[0]
             st.session_state.prediction = prediction_value
@@ -127,11 +125,12 @@ def show():
             st.error(f"Prediction failed. Please check input values. Error: {e}")
             st.session_state.prediction = None
 
+    # ------------------- Prediction Result and Report -------------------
     if st.session_state.prediction is not None:
         st.markdown(f"<div class='stSuccess'>Predicted Salary: ₹{int(st.session_state.prediction):,}</div>", unsafe_allow_html=True)
         st.markdown("---")
 
-        # PDF Report Generation Function
+        # --- PDF Report Generator ---
         def generate_pdf_report(salary, inputs):
             pdf = FPDF()
             pdf.add_page()
@@ -157,7 +156,6 @@ def show():
             pdf.output(filepath)
             return filepath
 
-        # Download Button
         try:
             report_path = generate_pdf_report(st.session_state.prediction, input_data)
             with open(report_path, "rb") as pdf_file:
@@ -171,7 +169,7 @@ def show():
         except Exception as e:
             st.error(f"Failed to generate report: {e}")
 
-    # ------------------- Optional Resume Parser -------------------
+    # ------------------- Resume Parser (Optional) -------------------
     st.markdown("---")
     with st.expander("📄 Upload Resume to Parse (Optional)"):
         uploaded_file = st.file_uploader("Upload your resume in PDF format", type="pdf", key="resume_uploader")
@@ -187,6 +185,6 @@ def show():
             except Exception as e:
                 st.error(f"⚠️ Could not read the PDF file. It might be corrupted or image-based. Error: {e}")
 
-# To run this file directly for testing:
+# To run directly
 if __name__ == "__main__":
     show()
