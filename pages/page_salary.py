@@ -189,4 +189,4 @@ def show():
 
 # To run this file directly for testing:
 if __name__ == "__main__":
-    show() can you chnage the method of taking input
+    show() 
